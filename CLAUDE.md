@@ -28,12 +28,15 @@ pnpm typecheck
 pnpm test
 pnpm build
 ANATOMY_MODEL_DIR=/path/to/model pnpm dev
+npm version minor --message "chore(release): %s" && git push --follow-tags
 ```
+
+A `v` tag publishes to npm through `.github/workflows/release.yml`. Never run `npm publish` by hand once trusted publishing is set up.
 
 ## Layout
 
 ```text
-.github/workflows/  CI: lint, type-check, test and build
+.github/workflows/  CI on every push, and the npm release on a version tag
 docs/               The model format
 playground/         A development page that drives the engine with plain controls
 src/                The engine; index.ts is the public entry point
