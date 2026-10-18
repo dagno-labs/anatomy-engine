@@ -1,4 +1,4 @@
-import type { Model } from './model.ts'
+import type { Model, Chunk } from './model.ts'
 import AnatomyEngineError from './anatomy-engine-error.ts'
 import parseModel from './parse-model.ts'
 
@@ -24,12 +24,18 @@ export default async function loadModel(
 
   return {
     ...model,
-    chunks: model.chunks.map((chunk) => ({
-      ...chunk,
-      url: new URL(chunk.url, base).href,
-      ...(chunk.gzip === undefined
-        ? {}
-        : { gzip: new URL(chunk.gzip, base).href }),
-    })),
+    chunks: model.chunks.map((chunk) => resolveChunk(chunk, base)),
   }
+}
+
+function resolveChunk(chunk: Chunk, base: string): Chunk {
+  const resolve = (url: string) => new URL(url, base).href
+
+  if (chunk.url === undefined) {
+    return { bytes: chunk.bytes, gzip: resolve(chunk.gzip) }
+  }
+
+  return chunk.gzip === undefined
+    ? { bytes: chunk.bytes, url: resolve(chunk.url) }
+    : { bytes: chunk.bytes, url: resolve(chunk.url), gzip: resolve(chunk.gzip) }
 }

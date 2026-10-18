@@ -38,20 +38,25 @@ function invalid(message: string) {
 }
 
 function parseChunk(value: unknown, index: number): Chunk {
-  if (
-    !isRecord(value) ||
-    typeof value.url !== 'string' ||
-    !isByteCount(value.bytes) ||
-    (value.gzip !== undefined && typeof value.gzip !== 'string')
-  ) {
-    throw invalid(
-      `Chunk ${index} needs a url, a byte count and an optional gzip url.`,
-    )
+  if (!isRecord(value) || !isByteCount(value.bytes)) {
+    throw invalid(`Chunk ${index} needs a byte count.`)
   }
 
-  return value.gzip === undefined
-    ? { url: value.url, bytes: value.bytes }
-    : { url: value.url, bytes: value.bytes, gzip: value.gzip }
+  const { bytes, url, gzip } = value
+
+  if (typeof url === 'string' && typeof gzip === 'string') {
+    return { bytes, url, gzip }
+  }
+
+  if (typeof url === 'string' && gzip === undefined) {
+    return { bytes, url }
+  }
+
+  if (typeof gzip === 'string' && url === undefined) {
+    return { bytes, gzip }
+  }
+
+  throw invalid(`Chunk ${index} needs a url, a gzip url, or both.`)
 }
 
 function isByteCount(value: unknown): value is number {

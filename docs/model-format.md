@@ -27,7 +27,7 @@ The engine loads a model in two parts: a JSON manifest that describes every part
 }
 ```
 
-- `chunks`: one entry per binary file. `url` is the uncompressed file and `gzip` an optional gzip copy, used when the browser has `DecompressionStream`. Both resolve against the manifest URL, so relative names keep a model movable. `bytes` is the uncompressed size, checked after download.
+- `chunks`: one entry per binary file, with `url`, the uncompressed file, `gzip`, a gzip copy, or both. The engine downloads the gzip copy when the browser has `DecompressionStream`, and otherwise the uncompressed file; a model with only gzip copies fails with `decompression-unavailable` in a browser without it. Both resolve against the manifest URL, so relative names keep a model movable. `bytes` is the uncompressed size, checked after download.
 - `parts`: one entry per mesh. `system` is one of `SYSTEM_IDS`. `chunk` indexes `chunks`. `positions`, `normals` and `indices` are byte offsets into the uncompressed chunk. `bounds` is the axis-aligned box of the mesh, `[min, max]`.
 - `concepts`: named anatomical concepts. `elements` lists the part ids a concept covers, and a part may belong to several concepts.
 

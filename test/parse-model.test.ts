@@ -45,3 +45,29 @@ test('rejects a concept that names a missing part', () => {
 
   assert.throws(() => parseModel(model), isInvalid)
 })
+
+test('accepts a gzip-only chunk', () => {
+  const model = {
+    ...createModel(),
+    chunks: [{ bytes: 48, gzip: 'body-0.bin.gz' }],
+  }
+
+  assert.deepEqual(parseModel(model).chunks, [
+    { bytes: 48, gzip: 'body-0.bin.gz' },
+  ])
+})
+
+test('rejects a chunk with neither a url nor a gzip url', () => {
+  const model = { ...createModel(), chunks: [{ bytes: 48 }] }
+
+  assert.throws(() => parseModel(model), isInvalid)
+})
+
+test('rejects a chunk url that is not a string', () => {
+  const model = {
+    ...createModel(),
+    chunks: [{ bytes: 48, url: 7, gzip: 'body-0.bin.gz' }],
+  }
+
+  assert.throws(() => parseModel(model), isInvalid)
+})

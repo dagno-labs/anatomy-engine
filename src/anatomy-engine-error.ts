@@ -2,6 +2,7 @@ export type AnatomyEngineErrorCode =
   | 'chunk-incomplete'
   | 'chunk-unavailable'
   | 'context-lost'
+  | 'decompression-unavailable'
   | 'geometry-invalid'
   | 'model-invalid'
   | 'model-unavailable'

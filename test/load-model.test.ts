@@ -23,7 +23,25 @@ test('resolves chunk urls against the manifest url', async () => {
 
   assert.deepEqual(model.chunks, [
     {
+      bytes: 48,
       url: 'https://cdn.example.com/anatomy/models/body-0.bin',
+      gzip: 'https://cdn.example.com/anatomy/models/body-0.bin.gz',
+    },
+  ])
+})
+
+test('resolves a gzip-only chunk against the manifest url', async () => {
+  serve(
+    Response.json({
+      ...createModel(),
+      chunks: [{ bytes: 48, gzip: 'body-0.bin.gz' }],
+    }),
+  )
+
+  const model = await loadModel(MANIFEST_URL)
+
+  assert.deepEqual(model.chunks, [
+    {
       bytes: 48,
       gzip: 'https://cdn.example.com/anatomy/models/body-0.bin.gz',
     },

@@ -598,9 +598,16 @@ export default class AnatomyEngine {
 
     const gzipUrl =
       typeof DecompressionStream === 'undefined' ? undefined : chunk.gzip
-    const response = await fetch(gzipUrl ?? chunk.url, {
-      signal: this.abort.signal,
-    })
+    const url = gzipUrl ?? chunk.url
+
+    if (!url) {
+      throw new AnatomyEngineError(
+        'decompression-unavailable',
+        'This browser cannot decompress the gzip-only model chunks.',
+      )
+    }
+
+    const response = await fetch(url, { signal: this.abort.signal })
     const buffer = await decodeChunk(response, chunk.bytes, !!gzipUrl)
 
     if (this.disposed) {

@@ -22,11 +22,9 @@ export type Concept = {
   elements: string[]
 }
 
-export type Chunk = {
-  url: string
-  bytes: number
-  gzip?: string
-}
+export type Chunk =
+  | { bytes: number; url: string; gzip?: string }
+  | { bytes: number; url?: undefined; gzip: string }
 
 export type Model = {
   version: string
