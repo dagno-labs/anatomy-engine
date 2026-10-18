@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Anatomy Engine playground</title>
+    <link href="./playground.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="stage"></div>
+    <form id="controls">
+      <fieldset id="systems">
+        <legend>Systems</legend>
+      </fieldset>
+      <label>Explode <input id="explode" max="1" min="0" step="0.01" type="range" value="0" /></label>
+      <label>View
+        <select id="view">
+          <option value="three-quarter">Three-quarter</option>
+          <option value="front">Front</option>
+          <option value="side">Side</option>
+          <option value="back">Back</option>
+        </select>
+      </label>
+      <label><input id="isolate" type="checkbox" /> Isolate selection</label>
+      <label><input id="rotate" type="checkbox" /> Auto-rotate</label>
+      <button id="reset" type="button">Reset view</button>
+      <output id="status">Loading the model…</output>
+    </form>
+    <div hidden id="tooltip"></div>
+    <script src="./main.ts" type="module" ></script>
+  </body>
+</html>

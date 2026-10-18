@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@dagno/anatomy-engine",
+  "version": "0.0.0",
+  "description": "A 3D engine for human anatomy on the web, built with Three.js.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagno-labs/anatomy-engine.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "packageManager": "pnpm@12.14.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "vite --config playground/vite.config.ts",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "test": "node --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "three": "~0.186.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "~26.6.5",
+    "@types/three": "~0.186.0",
+    "three": "~0.186.1",
+    "typescript": "~7.0.2",
+    "vite": "~8.3.4"
+  },
+  "volta": {
+    "node": "24.22.0",
+    "pnpm": "12.14.0"
+  }
+}

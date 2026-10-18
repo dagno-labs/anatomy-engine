@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font:
+    13px system-ui,
+    sans-serif;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+}
+
+#controls {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 48px);
+  padding: 12px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #ffffffe6;
+}
+
+#systems {
+  display: grid;
+  gap: 2px;
+}
+
+#tooltip {
+  position: fixed;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #202e3b;
+  color: #ffffff;
+  pointer-events: none;
+}
