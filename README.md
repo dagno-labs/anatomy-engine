@@ -4,9 +4,6 @@ Anatomy Engine is a 3D engine for human anatomy on the web, built with Three.js.
 
 It is an educational and visual reference. It is not a diagnostic or clinical tool, and it does not replace the judgment of a healthcare professional.
 
-## Credits
-
-- It starts from [Human Atlas](https://github.com/vinaysingh-05/human-atlas), released under the MIT License.
-- Anatomy data: [BodyParts3D](https://dbarchive.biosciencedbc.jp/en/bodyparts3d/), © The Database Center for Life Science, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The model data is not part of the engine. The application serves the [BodyParts3D](https://dbarchive.biosciencedbc.jp/en/bodyparts3d/) files, © The Database Center for Life Science, with the attribution their [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license requires.
 
 Anatomy Engine is maintained by [Dagno](https://github.com/dagno-labs), a healthcare SaaS platform that helps healthcare professionals deliver intelligent, preventive, and personalized care.
