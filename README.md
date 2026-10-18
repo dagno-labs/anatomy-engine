@@ -58,6 +58,6 @@ npm version minor --message "chore(release): %s"
 git push --follow-tags
 ```
 
-`npm version` (`patch`, `minor` or `major`) bumps `package.json` and creates the release commit and its `v` tag. Pushing the tag runs the release workflow, which checks, builds and publishes the package to npm through trusted publishing, with provenance. A prerelease, such as `0.2.0-beta.1`, is published under the `next` tag.
+`npm version` (`patch`, `minor` or `major`) bumps `package.json` and creates the release commit and its `v` tag. Pushing the tag runs the release workflow, which checks, builds and publishes the package to npm through trusted publishing, with provenance. Once npm has the version, the workflow creates its GitHub release with generated notes. A prerelease, such as `0.2.0-beta.1`, is published under the `next` tag and marked as a prerelease on GitHub.
 
 Anatomy Engine is maintained by [Dagno](https://github.com/dagno-labs), a healthcare SaaS platform that helps healthcare professionals deliver intelligent, preventive, and personalized care.
